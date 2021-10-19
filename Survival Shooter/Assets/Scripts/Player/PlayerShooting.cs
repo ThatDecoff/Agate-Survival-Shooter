@@ -9,7 +9,8 @@ public class PlayerShooting : MonoBehaviour
     float timer;                                    
     Ray shootRay;                                   
     RaycastHit shootHit;                            
-    int shootableMask;                             
+    int shootableMask;
+    int floorMask;
     ParticleSystem gunParticles;                    
     LineRenderer gunLine;                           
     AudioSource gunAudio;                           
@@ -18,7 +19,8 @@ public class PlayerShooting : MonoBehaviour
 
     void Awake()
     {
-        shootableMask = LayerMask.GetMask("Shootable");
+        shootableMask = LayerMask.GetMask(new string[] { "Shootable", "Floor"});
+
         gunParticles = GetComponent<ParticleSystem>();
         gunLine = GetComponent<LineRenderer>();
         gunAudio = GetComponent<AudioSource>();
@@ -40,13 +42,18 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
+    public bool GetShootCondition()
+    {
+        return timer >= timeBetweenBullets;
+    }
+
     public void DisableEffects()
     {
         gunLine.enabled = false;
         gunLight.enabled = false;
     }
 
-    void Shoot()
+    public void Shoot()
     {
         timer = 0f;
 
