@@ -227,7 +227,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4fff99673a41e24439d527ad0bd6b569, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 0.1
   m_Pitch: 1
   Loop: 1
@@ -1966,6 +1966,10 @@ PrefabInstance:
       propertyPath: damageImage
       value: 
       objectReference: {fileID: 1142692705}
+    - target: {fileID: 2079713668, guid: a0ea3a83e12257d48a2e948c437aa81d, type: 3}
+      propertyPath: deathClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d36a393bca4582043982db9089e1694f, type: 3}
     - target: {fileID: 3580564218916920909, guid: a0ea3a83e12257d48a2e948c437aa81d,
         type: 3}
       propertyPath: m_Radius
@@ -2039,6 +2043,10 @@ PrefabInstance:
     - target: {fileID: 2079713678, guid: a0ea3a83e12257d48a2e948c437aa81d, type: 3}
       propertyPath: m_LocalScale.z
       value: 0.99999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079713665, guid: a0ea3a83e12257d48a2e948c437aa81d, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0ea3a83e12257d48a2e948c437aa81d, type: 3}
