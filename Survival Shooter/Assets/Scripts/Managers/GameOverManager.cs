@@ -39,4 +39,9 @@ public class GameOverManager : MonoBehaviour
         warningText.text = string.Format("Warning! {0} m", Mathf.RoundToInt(enemyDistance));
         anim.SetTrigger("Warning");
     }
+
+    public void ShowSpeedUpText()
+    {
+        anim.SetTrigger("SpeedUp");
+    }
 }

@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     int floorMask;
     float camRayLength = 100f;
 
+    float moveMultiplier = 1;
+    float multiplierTimer = 0;
+
     private void Awake()
     {
         //mendapatkan nilai mask dari layer yang bernama Floor
@@ -19,6 +22,18 @@ public class PlayerMovement : MonoBehaviour
 
         //Mendapatkan komponen Rigidbody
         playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if(multiplierTimer > 0)
+        {
+            multiplierTimer -= Time.deltaTime;
+        }
+        if(multiplierTimer <= 0)
+        {
+            ResetMoveMult();
+        }
     }
 
     private void FixedUpdate()
@@ -41,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         movement.Set(h, 0f, v);
 
         //Menormalisasi nilai vector agar total panjang dari vector adalah 1
-        movement = movement.normalized * speed * Time.deltaTime;
+        movement = movement.normalized * speed * moveMultiplier * Time.deltaTime;
 
         //Move to position
         playerRigidbody.MovePosition(transform.position + movement);
@@ -74,5 +89,20 @@ public class PlayerMovement : MonoBehaviour
     {
         bool walking = h != 0f || v != 0f;
         anim.SetBool("IsWalking", walking);
+    }
+
+    void ResetMoveMult()
+    {
+        moveMultiplier = 1;
+        multiplierTimer = 0;
+    }
+
+    public void AddMoveMult(float multiplier, float timer)
+    {
+        // Multiplier will stack while timer is reset per multiplier
+        // This is the intended purpose
+        Debug.Log($"SpeedUp : {multiplier.ToString()}; {timer.ToString()}");
+        moveMultiplier *= multiplier;
+        multiplierTimer = timer;
     }
 }
